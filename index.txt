@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download My Book</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .book {
+      margin: 20px 0;
+    }
+    .book img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e68900;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Thank you for your payment of ₹199 via UPI! We appreciate your trust in us.</h1>
+    <div class="book">
+      <img src="book1.jpg" alt="Book 1">
+      <br>
+      <button onclick="downloadBook()">Download eBook</button>
+    </div>
+  </div>
+
+  <script>
+    function downloadBook() {
+      const password = "12345";
+      const bookLink = "book1.pdf";
+
+      const enteredPassword = prompt("Enter the PURCHASE CODE for the book:");
+
+      if (enteredPassword === password) {
+        const link = document.createElement("a");
+        link.href = bookLink;
+        link.download = "Book1.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert("Download will start shortly.");
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
