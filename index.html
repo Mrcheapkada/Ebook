@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Book Downloads</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .book {
+      margin: 20px 0;
+    }
+    .book img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e68900;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to My Book Library</h1>
+    <div class="book">
+      <img src="book1.jpg" alt="Book 1">
+      <br>
+      <button onclick="downloadBook(1)">Download Book 1</button>
+    </div>
+    <div class="book">
+      <img src="book2.jpg" alt="Book 2">
+      <br>
+      <button onclick="downloadBook(2)">Download Book 2</button>
+    </div>
+  </div>
+
+  <script>
+    function downloadBook(bookNumber) {
+      const passwords = { 1: "12345", 2: "23456" };
+      const bookLinks = { 1: "book1.pdf", 2: "book2.pdf" };
+
+      const enteredPassword = prompt(`Enter the password for Book ${bookNumber}:`);
+
+      if (enteredPassword === passwords[bookNumber]) {
+        const link = document.createElement("a");
+        link.href = bookLinks[bookNumber];
+        link.download = `Book${bookNumber}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert("Download will start shortly.");
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
